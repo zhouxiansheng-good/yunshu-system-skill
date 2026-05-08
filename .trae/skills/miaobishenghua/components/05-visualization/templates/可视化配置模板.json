@@ -1,0 +1,10 @@
+{
+  "_comment": "妙笔生花 - 可视化拓扑组件配置",
+  "enabled": true,
+  "auto_sync": true,
+  "sync_interval_ms": 500,
+  "server_port": 3456,
+  "theme": "dark",
+  "default_layout": "cose",
+  "snapshots_keep_count": 20
+}

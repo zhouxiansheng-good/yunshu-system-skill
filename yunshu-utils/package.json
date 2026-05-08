@@ -1,0 +1,11 @@
+{
+  "name": "yunshu-utils",
+  "version": "1.0.0",
+  "description": "云舒系统测试工具库 - 验证子代理驱动开发流程",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test-runner.js"
+  },
+  "keywords": ["utils", "yunshu"],
+  "license": "MIT"
+}
