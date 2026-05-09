@@ -2,7 +2,7 @@
 
 > **证据驱动的 AI 研发工作流技能** — 为 [Trae IDE](https://trae.ai) 设计的执行型工作流技能
 
-[![Version](https://img.shields.io/badge/version-3.0-blue.svg)](https://github.com/zhouxiansheng-good/yunshu-system-skill)
+[![Version](https://img.shields.io/badge/version-3.2-blue.svg)](https://github.com/zhouxiansheng-good/yunshu-system-skill)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Trae IDE](https://img.shields.io/badge/Trae-IDE-orange.svg)](https://trae.ai)
 [![中文文档](https://img.shields.io/badge/文档-中文-red.svg)](README.md)
@@ -35,38 +35,58 @@
 
 ```
 yunshu-system-skill/
-├── SKILL.md                    # 技能入口（能力 + 路由 + 纪律）
+├── SKILL.md                    # 技能入口（能力 + 路由 + 纪律 + 安全防护触发表）
 ├── README.md                   # 本文件
 ├── LICENSE                     # MIT 许可证
 ├── components/                 # 按阶段拆分的可执行组件
 │   ├── 01-init/SKILL.md        # 需求澄清与任务卡
 │   ├── 02-plan/SKILL.md        # 计划与规范
+│   ├── 02-plan/gates.md        # 计划阶段门禁清单（按需加载）
 │   ├── 03-execute/SKILL.md     # 执行与验证
+│   ├── 03-execute/gates.md     # 执行阶段门禁清单（按需加载）
+│   ├── 03-execute/debug.md     # 调试会话模板
+│   ├── 03-execute/verify.md    # 验证函数模板
 │   ├── 04-accept/SKILL.md      # 验收
+│   ├── 04-accept/gates.md      # 验收阶段门禁清单（按需加载）
 │   ├── 05-deliver/SKILL.md     # 交付与归档
 │   ├── 06-recover/SKILL.md     # 恢复与检查点
 │   └── 07-subagent/SKILL.md    # 子智能体驱动开发
+│   └── 07-subagent/dispatch.md # 子智能体分派模板
+├── safeguards/                 # 按需加载的安全防护文件（渐进式披露）
+│   ├── dependency.md           # 依赖验证（P-006~009）
+│   ├── context.md              # 上下文管理（P-001~005）
+│   ├── security.md             # 安全编码（P-011/013/026）
+│   ├── code-quality.md         # 代码质量（P-010/012/014）
+│   ├── refactor.md             # 跨文件重构（P-018~020）
+│   ├── database.md             # 数据库操作（P-021/025）
+│   ├── concurrency.md          # 并发安全（P-022）
+│   ├── microservice.md         # 微服务架构（P-023）
+│   ├── legacy.md               # 遗留代码（P-024）
+│   ├── agent-safety.md         # Agent安全（P-043~049）
+│   ├── understanding.md        # 业务背景挖掘（P-015）
+│   ├── architecture.md         # 架构决策检查（P-016）
+│   ├── dependency-analysis.md  # 系统级依赖分析（P-017）
+│   ├── cognition.md            # 理解验证门禁（P-053）
+│   ├── skill-preserve.md       # 技能保持（P-055/056）
+│   ├── bias-calibration.md     # 偏差校准（P-054/061）
+│   ├── sustainability.md       # 可持续性评估（P-067/069）
+│   ├── vibe-coding.md          # Vibe Coding风险（P-050~052）
+│   ├── maintenance.md          # 代码维护（P-062~066/068）
+│   ├── chinese-dev.md          # 中文开发者适配（P-037~039）
+│   ├── team.md                 # 回归防护（P-070/071）
+│   ├── team-norms.md           # 团队AI规范（P-072~074）
+│   └── talent-pipeline.md      # 人才梯队（P-075~077）
 ├── agents/                     # 子智能体（Trae IDE 智能体）
-│   ├── yunshu-implementer/AGENT.md   # 实现者（云舒微流程）
-│   ├── yunshu-spec-reviewer/AGENT.md # 规范审查者（云舒微流程）
-│   └── yunshu-quality-reviewer/AGENT.md # 质量审查者（云舒微流程）
+│   ├── yunshu-implementer/AGENT.md
+│   ├── yunshu-spec-reviewer/AGENT.md
+│   └── yunshu-quality-reviewer/AGENT.md
 └── templates/                  # 可直接复用的模板
-    ├── plan.md                 # 实施计划模板
-    ├── spec.md                 # 规格文档模板
-    ├── tasks.md                # 任务清单模板
-    ├── debug_session.md        # 调试会话记录模板
-    ├── bug_knowledge.md        # Bug 知识卡模板
-    ├── acceptance_runbook.md   # 验收剧本模板
-    ├── change_report.md        # 变更报告模板
-    ├── handoff.md              # 交接文档模板
-    ├── phase_memory_card.md    # 阶段记忆卡片模板
-    ├── subagent_implementer.md       # 子智能体实现者分派模板
-    ├── subagent_spec_reviewer.md     # 子智能体规范审查者分派模板
-    ├── subagent_quality_reviewer.md  # 子智能体质量审查者分派模板
-    ├── gsd_project.md          # GSD 项目文档模板
-    ├── gsd_requirements.md     # GSD 需求文档模板
-    ├── gsd_roadmap.md          # GSD 路线图模板
-    └── gsd_state.md            # GSD 状态文档模板
+    ├── plan.md / spec.md / tasks.md
+    ├── debug_session.md / bug_knowledge.md
+    ├── acceptance_runbook.md / change_report.md
+    ├── handoff.md / phase_memory_card.md
+    ├── subagent_*.md
+    └── gsd_*.md
 ```
 
 ## 🔄 工作流程
@@ -154,6 +174,60 @@ yunshu-system-skill/
 - **交接文档管理**：归档（完成后移入 _archive/）、清理（30 天以上自动清理）
 
 > 详细方法论见各组件 SKILL.md
+
+## 🆕 v3.2 新特性
+
+### 渐进式披露架构
+
+云舒系统采用**渐进式披露**设计，只在遇到对应场景时按需加载详细内容，不占主上下文：
+
+| 层级 | 内容 | 加载时机 |
+|------|------|----------|
+| L1（主文件） | SKILL.md 只保留能力路由 + 触发表 | 技能激活时 |
+| L2（组件） | 各组件 SKILL.md 保留核心流程 + 门禁入口 | 进入对应阶段时 |
+| L3（子文件） | gates.md / verify.md / debug.md / safeguards/*.md | 检测到触发条件时 |
+
+### 23个安全防护文件
+
+覆盖 55 个 AI 编程问题（致命/严重/中等），按场景按需加载：
+
+- **依赖安全**：dependency.md（P-006~009）
+- **上下文管理**：context.md（P-001~005）
+- **代码质量**：code-quality.md（P-010/012/014）
+- **安全编码**：security.md（P-011/013/026）
+- **重构防护**：refactor.md（P-018~020）
+- **专项场景**：database.md / concurrency.md / microservice.md / legacy.md / chinese-dev.md
+- **理解深度**：understanding.md / architecture.md / dependency-analysis.md（P-015~017）
+- **认知防护**：cognition.md / skill-preserve.md / bias-calibration.md（P-053~056/061）
+- **可持续性**：sustainability.md（P-067/069）
+- **Vibe Coding**：vibe-coding.md（P-050~052）
+- **代码维护**：maintenance.md（P-062~066/068）
+- **团队协作**：team.md / team-norms.md / talent-pipeline.md（P-070~077）
+
+### 组件门禁抽离
+
+03-execute / 02-plan / 04-accept 的门禁内容抽离为独立的 `gates.md`，SKILL.md 只保留触发入口表：
+
+```
+03-execute/SKILL.md  →  核心执行流程
+03-execute/gates.md  →  8个门禁的完整逻辑（按需加载）
+```
+
+### 功能聚焦的 Safeguard 拆分
+
+原 understanding.md / cognition.md / team.md 各拆分为 3 个独立文件，每个聚焦单一问题域：
+
+| 原文件 | 拆分后 | 聚焦 |
+|--------|--------|------|
+| understanding.md (152行) | understanding.md (56行) | 业务背景挖掘 |
+| | architecture.md (57行) | 架构决策检查 |
+| | dependency-analysis.md (51行) | 系统依赖分析 |
+| cognition.md (155行) | cognition.md (55行) | 理解验证 |
+| | skill-preserve.md (58行) | 技能保持 |
+| | bias-calibration.md (57行) | 偏差校准 |
+| team.md (131行) | team.md (60行) | 回归防护 |
+| | team-norms.md (49行) | AI使用规范 |
+| | talent-pipeline.md (46行) | 人才梯队 |
 
 ## 🚀 安装
 
